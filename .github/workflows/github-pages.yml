@@ -39,6 +39,8 @@ jobs:
         run: npm run build
         
       - name: Verify build output
+        # wait for build to complete
+        timeout-minutes: 0.1
         run: |
           echo "Listing root directory:"
           ls -la
