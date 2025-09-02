@@ -36,7 +36,16 @@ jobs:
         run: npm ci
         
       - name: Build with Next.js
-        run: npm run build
+        run: |
+          echo "Starting Next.js build..."
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "Next.js config:"
+          cat next.config.ts
+          echo "Package.json build script:"
+          grep -A1 -B1 '"build"' package.json
+          npm run build
+          echo "Build completed with exit code: $?"
         
       - name: Verify build output
         # wait for build to complete
